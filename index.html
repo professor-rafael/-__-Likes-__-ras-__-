@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Likes ras</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+</head>
+<body>
+    <script>
+        let thanks = [];
+
+        function setup() {
+            createCanvas(windowWidth, windowHeight);
+            let r;
+            for (let i = 0; i < 100; i++) {
+                r = Math.floor(Math.random() * 3);
+                let t = "";
+                if (r === 2) {
+                    t = "Prof.rafael!";
+                    t = "Prof.fabiula!";
+                    t = "Maria Helena!";
+                    t = "Isabel!";
+                } else if (r === 1) {
+                    t = "";
+                } else {
+                    t = "Familía Abençoada!";
+                }
+                thanks.push(new Text(Math.random() * width, Math.random() * height, Math.random() * 2, Math.random() * 2, Math.random() * 255, Math.random() * 255, Math.random() * 255, t));
+            }
+        }
+
+        class Text {
+            constructor(x, y, xs, ys, r, g, b, t) {
+                this.x = x;
+                this.y = y;
+                this.xs = xs;
+                this.ys = ys;
+                this.r = r;
+                this.g = g;
+                this.b = b;
+                this.t = t;
+            }
+
+            show() {
+                fill(this.r, this.g, this.b);
+                textSize(20);
+                text(this.t, this.x, this.y);
+                this.y += this.ys;
+                this.x += this.xs;
+                if (this.x >= width || this.x < 0) {
+                    this.xs *= -1;
+                }
+                if (this.y >= height || this.y <= 0) {
+                    this.ys *= -1;
+                }
+            }
+        }
+
+        function draw() {
+            clear();
+            noStroke();
+            background(0);
+            for (let i = 0; i < thanks.length; i++) {
+                thanks[i].show();
+            }
+        }
+    </script>
+</body>
+</html>
